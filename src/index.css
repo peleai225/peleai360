@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --color-primary: #2B4C8C;
+  --color-primary-dark: #1e3a6f;
+  --color-background-light: #f8fafc;
+  --color-surface: #ffffff;
+  --shadow-soft: 0 2px 15px -3px rgb(0 0 0 / 0.04), 0 10px 20px -2px rgb(0 0 0 / 0.03);
+  --shadow-card: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 10px 15px -3px rgb(0 0 0 / 0.04);
+  --shadow-elevated: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.04);
+
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes shimmer {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+  }
+  --animate-gradient: gradient 8s ease infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-shimmer: shimmer 2s ease-in-out infinite;
+}
+
+.animate-gradient {
+  animation: gradient 8s ease infinite;
+}
+
+@layer base {
+  body {
+    @apply font-sans antialiased text-slate-800 bg-white;
+    background: 
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(43, 76, 140, 0.06), transparent),
+      radial-gradient(ellipse 60% 40% at 100% 50%, rgba(43, 76, 140, 0.03), transparent),
+      radial-gradient(ellipse 60% 40% at 0% 50%, rgba(43, 76, 140, 0.03), transparent);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight font-semibold;
+  }
+}
+
+@layer utilities {
+  .bg-map-dots {
+    background-image: radial-gradient(#94a3b8 0.8px, transparent 0.8px);
+    background-size: 24px 24px;
+  }
+  .glass {
+    @apply bg-white/80 backdrop-blur-xl border border-slate-200/40;
+  }
+  .card-modern {
+    @apply rounded-2xl border border-slate-200/80 bg-white shadow-[var(--shadow-card)] transition-all duration-300 hover:shadow-[var(--shadow-elevated)] hover:border-slate-200;
+  }
+}
