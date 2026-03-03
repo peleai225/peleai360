@@ -13,6 +13,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import AdminSettings from './pages/AdminSettings';
 import AdminVideos from './pages/AdminVideos';
 import AdminAbout from './pages/AdminAbout';
+import { API_BASE } from './config';
 import CookiePolicy from './pages/CookiePolicy';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsPage from './pages/TermsPage';
@@ -24,7 +25,7 @@ function ProtectedAdmin({ children }: { children: React.ReactNode }) {
   const [authorized, setAuthorized] = useState(false);
 
   useEffect(() => {
-    fetch('/api/admin/me', { credentials: 'include' })
+    fetch(`${API_BASE}/api/admin/me`, { credentials: 'include' })
       .then((r) => {
         setAuthorized(r.ok);
         setChecking(false);

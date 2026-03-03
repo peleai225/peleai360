@@ -1,0 +1,12 @@
+# Netlify - Frontend PeleAI 360°
+# L'API backend doit être déployée séparément (Render, etc.)
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = true

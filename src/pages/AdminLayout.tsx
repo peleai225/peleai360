@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_BASE } from '../config';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
 import { LayoutDashboard, Settings, Video, Building2, LogOut, ExternalLink, Menu, X } from 'lucide-react';
 
@@ -7,7 +8,7 @@ export default function AdminLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const logout = async () => {
-    await fetch('/api/admin/logout', { method: 'POST', credentials: 'include' }).catch(() => {});
+    await fetch(`${API_BASE}/api/admin/logout`, { method: 'POST', credentials: 'include' }).catch(() => {});
     navigate('/admin/login');
     window.location.reload();
   };

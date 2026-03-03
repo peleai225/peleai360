@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE } from '../config';
 import { Save, Building2, BarChart3, Target, ExternalLink } from 'lucide-react';
 import { adminFetch } from '../lib/adminFetch';
 
@@ -8,7 +9,7 @@ export default function AdminAbout() {
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
-    fetch('/api/site')
+    fetch(`${API_BASE}/api/site`)
       .then((r) => r.text())
       .then((t) => { const d = t ? JSON.parse(t) : {}; setSettings(d.settings || {}); })
       .catch(() => setSettings({}));

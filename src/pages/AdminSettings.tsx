@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { API_BASE } from '../config';
 import { Save, Image, Mail, MessageSquare, Facebook, Twitter, Instagram, Linkedin, Upload, Lock, Search } from 'lucide-react';
 import { adminFetch } from '../lib/adminFetch';
 
@@ -14,7 +15,7 @@ export default function AdminSettings() {
   const faviconInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    fetch('/api/site')
+    fetch(`${API_BASE}/api/site`)
       .then((r) => r.text())
       .then((t) => { const d = t ? JSON.parse(t) : {}; setSettings(d.settings || {}); })
       .catch(() => setSettings({}));

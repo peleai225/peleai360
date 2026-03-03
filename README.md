@@ -52,7 +52,8 @@ Solution de gestion commerciale (E-commerce, POS, stock) pour marchands africain
 
 ## Déploiement gratuit
 
-Voir [DEPLOYMENT.md](DEPLOYMENT.md) pour héberger sur **Render.com** (gratuit).
+- **[DEPLOYMENT_NETLIFY.md](DEPLOYMENT_NETLIFY.md)** : Frontend Netlify + API Render (recommandé)
+- **[DEPLOYMENT.md](DEPLOYMENT.md)** : Tout sur Render (monolithique)
 
 ## Documentation
 

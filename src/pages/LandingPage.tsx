@@ -5,6 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { API_BASE } from '../config';
 import {
   ShoppingCart, Package, ArrowRight, PlayCircle, CheckCircle2, ChevronRight, ChevronDown,
   Mail, MapPin, Menu, X, Database, MessageSquare, Play, Facebook, Twitter, Instagram, Linkedin,
@@ -586,7 +587,7 @@ export default function LandingPage() {
     const key = 'peleai_visit_' + new Date().toDateString();
     if (sessionStorage.getItem(key)) return;
     sessionStorage.setItem(key, '1');
-    fetch('/api/visit', { method: 'POST', headers: { 'Content-Type': 'application/json' } }).catch(() => {});
+    fetch(`${API_BASE}/api/visit`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'include' }).catch(() => {});
   }, []);
 
   if (loading) return <div className="min-h-screen flex items-center justify-center bg-white"><div className="animate-spin w-12 h-12 border-4 border-primary border-t-transparent rounded-full"></div></div>;

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { API_BASE } from '../config';
 
 export interface SiteData {
   settings: Record<string, string>;
@@ -39,7 +40,7 @@ export function SiteProvider({ children }: { children: React.ReactNode }) {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/site');
+      const res = await fetch(`${API_BASE}/api/site`);
       if (!res.ok) throw new Error('Erreur chargement');
       const text = await res.text();
       let json = { settings: {}, videos: [] };

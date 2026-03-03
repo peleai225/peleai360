@@ -20,8 +20,12 @@ let adminSession: { token: string; adminId: bigint } | null = null;
 const app = express();
 const PORT = process.env.PORT || 3001;
 const isProd = process.env.NODE_ENV === 'production';
+const frontendUrl = (process.env.FRONTEND_URL || '').trim();
 
-app.use(cors({ origin: true, credentials: true }));
+app.use(cors({
+  origin: frontendUrl || true,
+  credentials: true,
+}));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -88,7 +92,7 @@ app.post('/api/admin/login', async (req, res) => {
     res.cookie(COOKIE_NAME, token, {
       httpOnly: true,
       secure: isProd,
-      sameSite: 'lax',
+      sameSite: frontendUrl ? 'none' : 'lax',
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 jours
       path: '/',
     });
@@ -250,8 +254,10 @@ app.get('/api/admin/stats', authMiddleware, async (_req, res) => {
   }
 });
 
-// En production : servir le frontend (SPA) - doit être après les routes API
-if (isProd) {
+// En production : servir le frontend (SPA) si dist existe (déploiement monolithique)
+// Si API_ONLY=true (Netlify + Render), on ne sert pas le frontend
+const apiOnly = process.env.API_ONLY === 'true';
+if (isProd && !apiOnly) {
   const distPath = path.resolve(__dirname, '../dist');
   app.use(express.static(distPath));
   app.get('*', (_req, res) => res.sendFile(path.join(distPath, 'index.html')));
