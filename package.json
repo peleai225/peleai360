@@ -12,7 +12,7 @@
     "dev:client": "vite --port=3000 --host=0.0.0.0",
     "server": "node --env-file=.env ./node_modules/tsx/dist/cli.mjs server/run.ts",
     "build": "vite build",
-    "start": "cross-env NODE_ENV=production node ./node_modules/tsx/dist/cli.mjs server/run.ts",
+    "start": "node ./node_modules/tsx/dist/cli.mjs server/run.ts",
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
