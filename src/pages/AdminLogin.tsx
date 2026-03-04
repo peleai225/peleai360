@@ -58,7 +58,7 @@ export default function AdminLogin() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 className="w-full px-5 py-4 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary focus:border-primary transition-all"
-                placeholder="admin"
+                placeholder="Votre identifiant"
                 required
               />
             </div>
@@ -82,10 +82,6 @@ export default function AdminLogin() {
               {loading ? 'Connexion...' : 'Se connecter'}
             </button>
           </form>
-
-          <p className="text-center text-slate-400 text-xs mt-6">
-            Identifiants par défaut : admin / admin123
-          </p>
         </div>
       </div>
     </div>
